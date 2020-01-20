@@ -1,7 +1,7 @@
 # Личный проект «Типотека» [![Build status][travis-image]][travis-url]
 
 * Студент: [Sergej Charskij](https://up.htmlacademy.ru/nodejs/3/user/84251).
-* Наставник: `Неизвестно`.
+* Наставник: `Дмитрий Мирошниченко`.
 
 ---
 
