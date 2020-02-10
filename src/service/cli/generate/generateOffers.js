@@ -98,7 +98,7 @@ function generateOffers(count) {
   return Array(count).fill().map(() => {
     return ({
       "title": Titles[getRandomIntInclusive(0, Titles.length - 1)],
-      "announce": getType(MAX_ANNOUNCE_NUM, Text),
+      "announce": getType(MAX_ANNOUNCE_NUM, Text).join(` `),
       "fullText": getType(maxFullText, Text).join(` `),
       "category": getType(Categories.length, Categories),
       "createdDate": generateDate(),
