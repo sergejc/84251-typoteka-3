@@ -20,10 +20,9 @@ module.exports = {
       process.exit(constants.ExitCode.failure);
     }
 
-
     async function writeMock() {
       try {
-        await writeFile(FILE_NAME, JSON.stringify(generateOffers(count)));
+        await writeFile(FILE_NAME, JSON.stringify(await generateOffers(count)));
         process.exit(constants.ExitCode.success);
       } catch (err) {
         process.exit(constants.ExitCode.failure);
