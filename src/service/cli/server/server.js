@@ -4,8 +4,10 @@ const http = require(`http`);
 
 const constants = require(`../../../constants`);
 const {readMockFile, buildHTMLFromTitles} = require(`../../../utils`);
-const HTTP_SUCCESS_CODE = 200;
-const HTTP_NOT_FOUND_CODE = 404;
+const HTTP_CODES = {
+    SUCCESS: 200,
+    NOT_FOUND: 404,
+}
 
 
 const onClientConnect = async (req, res) => {
@@ -17,18 +19,18 @@ const onClientConnect = async (req, res) => {
         const data = JSON.parse(await readMockFile());
         content = buildHTMLFromTitles(data);
 
-        res.writeHead(HTTP_SUCCESS_CODE, {
+        res.writeHead(HTTP_CODES.SUCCESS, {
           'Content-Type': `text/html; charset=UTF-8`,
         });
       } catch (err) {
-        res.writeHead(HTTP_NOT_FOUND_CODE, {
+        res.writeHead(HTTP_CODES.NOT_FOUND, {
           'Content-Type': `text/html; charset=UTF-8`,
         });
       }
 
       break;
     default:
-      res.writeHead(HTTP_NOT_FOUND_CODE, {
+      res.writeHead(HTTP_CODES.NOT_FOUND, {
         'Content-Type': `text/plain; charset=UTF-8`,
       });
   }
