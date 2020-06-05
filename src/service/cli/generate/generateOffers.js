@@ -1,5 +1,5 @@
 'use strict';
-
+const {nanoid} = require(`nanoid`);
 const {getRandomIntInclusive, readFileByName} = require(`../../../utils`);
 
 const MAX_ANNOUNCE_NUM = 5;
@@ -46,6 +46,26 @@ const generateDate = (function () {
   };
 }());
 
+const comments = [
+  "Это где ж такие красоты?",
+  "Совсем немного...",
+  "Согласен с автором!",
+  "Мне кажется или я уже читал это где-то?",
+  "Мне не нравится ваш стиль. Ощущение, что вы меня поучаете.",
+  "Давно не пользуюсь стационарными компьютерами. Ноутбуки победили.",
+  "Хочу такую же футболку :-)",
+  "Плюсую, но слишком много буквы!",
+  "Планируете записать видосик на эту тему?"
+];
+
+const MIN_COMMENTS = 1;
+const MAX_COMMENTS = comments.length - 1;
+
+function generateComments() {
+  const commentsQnt = getRandomIntInclusive(MIN_COMMENTS, MAX_COMMENTS);
+  return comments.slice(commentsQnt).map((comment) => ({"id": nanoid(6), "text": comment}));
+}
+
 async function generateOffers(count) {
   const titles = await readFileByName(`titles.txt`);
   const text = await readFileByName(`sentences.txt`);
@@ -54,11 +74,13 @@ async function generateOffers(count) {
   const maxFullText = getRandomIntInclusive(1, text.length);
   return Array(count).fill().map(() => {
     return ({
+      "id": nanoid(6),
       "title": titles[getRandomIntInclusive(0, titles.length - 1)],
       "announce": getType(MAX_ANNOUNCE_NUM, text).join(` `),
       "fullText": getType(maxFullText, text).join(` `),
       "category": getType(categories.length, categories),
       "createdDate": generateDate(),
+      "comments": generateComments(),
     });
   });
 }
