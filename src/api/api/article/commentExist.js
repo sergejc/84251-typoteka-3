@@ -1,4 +1,4 @@
-const {HttpCode} = require('../../../../../constants');
+const {HttpCode} = require('../../../constants');
 
 module.exports = (service) => (req, res, next) => {
   const {articleId, commentId} = req.params;

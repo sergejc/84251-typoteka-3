@@ -1,5 +1,5 @@
 const {Router} = require(`express`);
-const {HttpCode} = require('../../../../../constants');
+const {HttpCode} = require('../../../constants');
 
 const router = new Router();
 

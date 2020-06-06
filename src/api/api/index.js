@@ -1,5 +1,5 @@
 const  {Router} = require('express');
-const getMockData = require('../../../lib/getMockData');
+const getMockData = require('../lib/getMockData');
 const { Article, Category, Search} = require('../services');
 const article = require('./article')
 const category = require('./category');

@@ -1,25 +1,22 @@
 'use strict';
 
 const chalk = require(`chalk`);
-const util = require(`util`);
-const fs = require(`fs`);
-const readFile = util.promisify(fs.readFile);
+const fs = require(`fs`).promises;
+const {ExitCode} = require(`../../../constants`);
+
 const FILE_NAME = __dirname + `/help.txt`;
-const constants = require(`../../../constants`);
 
 module.exports = {
   name: `--help`,
   run() {
-    async function readHelp() {
+    (async () => {
       try {
-        const data = await readFile(FILE_NAME, `utf8`);
+        const data = await fs.readFile(FILE_NAME, `utf8`);
         console.info(chalk.gray(data));
-        process.exit(constants.ExitCode.success);
+        process.exit(ExitCode.SUCCESS);
       } catch (err) {
-        process.exit(constants.ExitCode.failure);
+        process.exit(ExitCode.FAILURE);
       }
-    }
-
-    readHelp();
+    })();
   }
 };

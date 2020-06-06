@@ -1,9 +1,10 @@
 'use strict';
 
 module.exports = {
-  DEFAULT_COMMAND: `--help`,
-  USER_ARGV_INDEX: 2,
-  ExitCode: {success: 0, failure: 1},
+  ExitCode: {
+    SUCCESS: 0,
+    FAILURE: 1,
+  },
   HttpCode: {
     OK: 200,
     CREATED: 201,

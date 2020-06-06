@@ -1,6 +1,6 @@
 'use strict';
 const {nanoid} = require(`nanoid`);
-const {getRandomIntInclusive, readFileByName} = require(`../../../utils`);
+const {getRandomIntInclusive, readFileByName} = require(`./utils`);
 
 const MAX_ANNOUNCE_NUM = 5;
 

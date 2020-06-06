@@ -1,5 +1,5 @@
 const {Router} = require(`express`);
-const {HttpCode} = require('../../../../../constants');
+const {HttpCode} = require('../../../constants');
 const articleValidate = require('./articleValidate');
 const articleExist = require('./articleExist.js');
 const articleUpdateValidate = require('./articleUpdateValidate');
