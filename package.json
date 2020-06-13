@@ -2,12 +2,13 @@
   "name": "84251-typoteka-3",
   "version": "1.0.0",
   "description": "Типотека",
-  "main": "./src/service/service.js",
+  "main": "src/service/index.js",
   "scripts": {
-    "start": "node ./src/service/service.js",
+    "start": "concurrently \"npm run server\" \"npm run start-front-server\"",
+    "command": "node src/service/index.js",
     "test": "npm run eslint",
     "eslint": "eslint --ext .js src/",
-    "server": "nodemon ./src/service/service.js --server",
+    "server": "nodemon src/api/index.js",
     "start-front-server": "nodemon ./src/express/index.js"
   },
   "repository": {
@@ -27,7 +28,9 @@
   },
   "dependencies": {
     "chalk": "3.0.0",
+    "concurrently": "5.2.0",
     "express": "4.17.1",
+    "nanoid": "3.1.10",
     "pug": "2.0.4"
   }
 }

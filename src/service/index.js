@@ -2,15 +2,12 @@
 
 const {cli} = require(`./cli`);
 
-const {
-  DEFAULT_COMMAND,
-  USER_ARGV_INDEX,
-  ExitCode
-} = require(`../constants`);
+const { ExitCode } = require(`../constants`);
+const DEFAULT_COMMAND = `--help`;
+const USER_ARGV_INDEX = 2;
 
 const userArguments = process.argv.slice(USER_ARGV_INDEX);
 const [userCommand] = userArguments;
-
 if (userArguments.length === 0) {
   cli[DEFAULT_COMMAND].run();
   return;
