@@ -1,6 +1,6 @@
-const Article = require('./Article');
-const Category = require('./Category');
-const Search = require('./Search')
+const Article = require('./article');
+const Category = require('./category');
+const Search = require('./search')
 
 module.exports = {
   Article,

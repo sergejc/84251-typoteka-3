@@ -4,7 +4,8 @@
   "description": "Типотека",
   "main": "src/service/index.js",
   "scripts": {
-    "start": "node src/service/index.js",
+    "start": "concurrently \"npm run server\" \"npm run start-front-server\"",
+    "command": "node src/service/index.js",
     "test": "npm run eslint",
     "eslint": "eslint --ext .js src/",
     "server": "nodemon src/api/index.js",
@@ -27,8 +28,9 @@
   },
   "dependencies": {
     "chalk": "3.0.0",
+    "concurrently": "5.2.0",
     "express": "4.17.1",
-    "nanoid": "^3.1.9",
+    "nanoid": "3.1.10",
     "pug": "2.0.4"
   }
 }

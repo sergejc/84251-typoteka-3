@@ -59,10 +59,10 @@ const comments = [
 ];
 
 const MIN_COMMENTS = 1;
-const MAX_COMMENTS = comments.length - 1;
+const maxComments = comments.length - 1;
 
 function generateComments() {
-  const commentsQnt = getRandomIntInclusive(MIN_COMMENTS, MAX_COMMENTS);
+  const commentsQnt = getRandomIntInclusive(MIN_COMMENTS, maxComments);
   return comments.slice(commentsQnt).map((comment) => ({"id": nanoid(6), "text": comment}));
 }
 
