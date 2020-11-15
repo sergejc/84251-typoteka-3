@@ -7,12 +7,14 @@ const search = require('./search');
 
 const router = new Router();
 
-(async () => {
+const apiRoutes = async () => {
   const mockData = await getMockData();
 
   article(router, new Article(mockData));
   category(router, new Category(mockData));
   search(router, new Search(mockData));
-})();
 
-module.exports = router;
+  return router;
+};
+
+module.exports = apiRoutes;

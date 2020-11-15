@@ -8,6 +8,7 @@ module.exports = (req, res, next) => {
   const keysExists = articleKeys.every((key) => keys.includes(key));
 
   if (!keysExists) {
+    logger.info(`The HTTP response status is ${HttpCode.BAD_REQUEST}`);
     return res.status(HttpCode.BAD_REQUEST)
       .send(`Bad request`);
   }

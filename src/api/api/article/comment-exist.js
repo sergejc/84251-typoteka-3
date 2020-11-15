@@ -5,6 +5,7 @@ module.exports = (service) => (req, res, next) => {
   const comment = service.getCommentById(articleId, commentId);
 
   if (!comment) {
+    logger.info(`The HTTP response status is ${HttpCode.NOT_FOUND}`);
     return res.status(HttpCode.NOT_FOUND)
       .send(`Comment with ${commentId} not found`);
   }
