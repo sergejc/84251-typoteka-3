@@ -1,4 +1,5 @@
-const {HttpCode} = require('../../../constants');
+const {HttpCode} = require(`../../../constants`);
+const {logger} = require(`../../logger`);
 
 const articleKeys = ["title", "announce", "fullText", "category", "createdDate", "comments"]
 

@@ -9,7 +9,7 @@ const port = Number.parseInt(process.argv[2], 10) || DEFAULT_PORT;
 
 (async () => {
   try {
-    const server = await app;
+    const server = await app();
     server.listen(port, () => {
       logger.info(`Server start on port: ${port}`);
     });

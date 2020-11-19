@@ -21,7 +21,7 @@ describe(`Search API end-point`, () => {
       'Программирование'
     ];
 
-    const res = await request(await app).get(`/api/categories`);
+    const res = await request(await app()).get(`/api/categories`);
     expect(res.statusCode).toBe(200);
     expect(res.body).toEqual(expectedResult);
   });

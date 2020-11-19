@@ -7,7 +7,7 @@ const search = require('./search');
 
 const router = new Router();
 
-const apiRoutes = async () => {
+module.exports = async () => {
   const mockData = await getMockData();
 
   article(router, new Article(mockData));
@@ -16,5 +16,3 @@ const apiRoutes = async () => {
 
   return router;
 };
-
-module.exports = apiRoutes;
