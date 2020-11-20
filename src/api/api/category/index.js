@@ -1,3 +1,3 @@
-const category = require('./category');
+const category = require(`./category`);
 
 module.exports = category;

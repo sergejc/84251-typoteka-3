@@ -1,4 +1,4 @@
-const {nanoid} = require('nanoid');
+const {nanoid} = require(`nanoid`);
 
 const MAX_ID_LENGTH = 6;
 
@@ -34,7 +34,7 @@ class Article {
     this._articles[id] = {
       ...this._articles[id],
       ...newArticle,
-    }
+    };
 
     return this._articles[id];
   }
@@ -48,16 +48,16 @@ class Article {
   }
 
   getCommentById(articleId, commentId) {
-    return this.getComments(articleId).find(comment => comment.id === commentId);
+    return this.getComments(articleId).find((comment) => comment.id === commentId);
   }
 
   deleteComment(articleId, commendId) {
     const article = this._articles[articleId];
-    const comments = article.comments.filter(comment => comment.id !== commendId);
+    const comments = article.comments.filter((comment) => comment.id !== commendId);
     this._articles[articleId] = {
       ...this._articles[articleId],
       comments,
-    }
+    };
   }
 
   createComment(articleId, commentData) {

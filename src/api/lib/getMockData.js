@@ -1,7 +1,8 @@
-const chalk = require(`chalk`);
+'use strict';
+
 const fs = require(`fs`).promises;
-const logger = require('../logger');
-const MOCK_FILE = __dirname +`/../../service/cli/generate/mock.json`;
+const logger = require(`../logger`);
+const MOCK_FILE = __dirname + `/../../service/cli/generate/mock.json`;
 let data = null;
 
 const getMockData = async () => {

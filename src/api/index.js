@@ -1,7 +1,7 @@
 'use strict';
 
 const app = require(`./app`);
-const { logger } = require(`./logger`);
+const {logger} = require(`./logger`);
 const constants = require(`../constants`);
 
 const DEFAULT_PORT = 3000;

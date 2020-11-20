@@ -1,7 +1,7 @@
 'use strict';
 
 const request = require(`supertest`);
-const getApp = require('../../app');
+const getApp = require(`../../app`);
 
 let app;
 beforeEach(async () => {
@@ -34,23 +34,23 @@ describe(`Article API endpoint`, () => {
   describe(`post /`, () => {
     test(`a new article can be created`, async () => {
       const res = await request(app).post(`/api/articles`).send({
-        title: 'title',
-        announce: 'announce',
-        fullText: 'full text',
+        title: `title`,
+        announce: `announce`,
+        fullText: `full text`,
         category: [],
-        createdDate: '',
-        comments: ''
+        createdDate: ``,
+        comments: ``
       });
       expect(res.statusCode).toBe(201);
     });
 
     test(`that Articles API returns 400 when the title property does not exisist`, async () => {
       const res = await request(app).post(`/api/articles`).send({
-        announce: 'announce',
-        fullText: 'full text',
+        announce: `announce`,
+        fullText: `full text`,
         category: [],
-        createdDate: '',
-        comments: ''
+        createdDate: ``,
+        comments: ``
       });
       expect(res.statusCode).toBe(400);
     });
@@ -59,12 +59,12 @@ describe(`Article API endpoint`, () => {
   describe(`put /:articleId`, () => {
     test(`that an article can be update`, async () => {
       const res = await request(app).put(`/api/articles/QQafsx`).send({
-        title: 'new title',
-        announce: 'announce',
-        fullText: 'full text',
+        title: `new title`,
+        announce: `announce`,
+        fullText: `full text`,
         category: [],
-        createdDate: '',
-        comments: ''
+        createdDate: ``,
+        comments: ``
       });
 
       expect(res.statusCode).toBe(204);
@@ -126,7 +126,7 @@ describe(`Article API endpoint`, () => {
   describe(`post /:articleId/comments`, () => {
     test(`a new comment can be created`, async () => {
       const res = await request(app).post(`/api/articles/vjMZvz/comments`).send({
-        text: 'long text',
+        text: `long text`,
       });
 
       expect(res.statusCode).toBe(201);
@@ -134,7 +134,7 @@ describe(`Article API endpoint`, () => {
 
     test(`that Articles API returns 404 when the article does not exsist`, async () => {
       const res = await request(app).post(`/api/articles/foo/comments`).send({
-        text: 'long text',
+        text: `long text`,
       });
 
       expect(res.statusCode).toBe(404);

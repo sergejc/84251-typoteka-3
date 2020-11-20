@@ -1,7 +1,9 @@
+'use strict';
+
 const {HttpCode} = require(`../../../constants`);
 const {logger} = require(`../../logger`);
 
-const articleKeys = ["title", "announce", "fullText", "category", "createdDate", "comments"]
+const articleKeys = [`title`, `announce`, `fullText`, `category`, `createdDate`, `comments`];
 
 module.exports = (req, res, next) => {
   const newOffer = req.body;

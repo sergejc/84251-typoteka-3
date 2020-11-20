@@ -1,3 +1,3 @@
-const article = require('./article');
+const article = require(`./article`);
 
 module.exports = article;

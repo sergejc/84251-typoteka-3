@@ -1,3 +1,5 @@
+`use stict`;
+
 const {HttpCode} = require(`../../../constants`);
 const {logger} = require(`../../logger`);
 

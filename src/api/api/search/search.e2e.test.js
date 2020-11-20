@@ -1,7 +1,7 @@
 'use strict';
 
 const request = require(`supertest`);
-const getApp = require('../../app');
+const getApp = require(`../../app`);
 
 let app;
 beforeEach(async () => {

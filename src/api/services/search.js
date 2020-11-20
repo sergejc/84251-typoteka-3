@@ -4,7 +4,7 @@ class Search {
   }
 
   find(term) {
-    return this._offers.filter(article => article.title.includes(term));
+    return this._offers.filter((article) => article.title.includes(term));
   }
 }
 

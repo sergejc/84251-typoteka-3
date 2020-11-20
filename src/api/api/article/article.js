@@ -1,9 +1,11 @@
+'use strict';
+
 const {Router} = require(`express`);
 const {HttpCode} = require(`../../../constants`);
 const articleValidate = require(`./article-validate`);
 const articleExist = require(`./article-exist.js`);
 const articleUpdateValidate = require(`./article-update-validate`);
-const commentExist =  require(`./comment-exist`);
+const commentExist = require(`./comment-exist`);
 const {logger} = require(`../../logger`);
 
 const router = new Router();
@@ -36,8 +38,8 @@ module.exports = (app, service) => {
   router.put(`/:articleId`, [articleExist(service), articleUpdateValidate], (req, res) => {
     const {articleId} = req.params;
     const article = service.update(
-      req.body,
-      articleId,
+        req.body,
+        articleId,
     );
 
     logger.info(`The HTTP response status is ${HttpCode.UPDATED}`);
