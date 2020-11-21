@@ -1,3 +1,5 @@
+'use strict';
+
 class Search {
   constructor(offers) {
     this._offers = offers;

@@ -1,3 +1,5 @@
+'use strict';
+
 class Category {
   constructor(offers) {
     this._offers = offers;

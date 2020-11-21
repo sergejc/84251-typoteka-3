@@ -1,7 +1,7 @@
 'use strict';
 
 const express = require(`express`);
-const constants = require(`../constants`);
+const {HttpCode} = require(`../constants`);
 const {logger} = require(`./logger`);
 const routes = require(`./api`);
 
@@ -18,7 +18,7 @@ module.exports = async () => {
 
   app.use((req, res) => {
     logger.error(`The requested url ${req.url} not found`);
-    res.status(404).send(`Page not found`);
+    res.status(HttpCode.NOT_FOUND).send(`Page not found`);
   });
 
   return app;

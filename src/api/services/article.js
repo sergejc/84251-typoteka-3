@@ -1,3 +1,5 @@
+'use strict';
+
 const {nanoid} = require(`nanoid`);
 
 const MAX_ID_LENGTH = 6;

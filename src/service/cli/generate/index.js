@@ -16,7 +16,7 @@ module.exports = {
 
     if (count > MAX_COUNT) {
       console.info(chalk.red(`Не больше 1000 объявлений`));
-      process.exit(constants.ExitCode.FAILURE);
+      process.exit(ExitCode.FAILURE);
     }
 
     async function writeMock() {
