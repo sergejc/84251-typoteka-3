@@ -75,7 +75,7 @@ module.exports = (app, service) => {
     const {articleId} = req.params;
     const comment = service.createComment(articleId, req.body);
 
-    logger.info(`The HTTP response status is ${HttpCode.NO_CREATED}`);
+    logger.info(`The HTTP response status is ${HttpCode.CREATED}`);
     return res.status(HttpCode.CREATED)
       .json(comment);
   });

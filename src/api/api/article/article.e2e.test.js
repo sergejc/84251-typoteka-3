@@ -3,6 +3,14 @@
 
 const request = require(`supertest`);
 const getApp = require(`../../app`);
+const getMockData = require(`../../lib/getMockData`);
+
+let mockData;
+let expectedArticle;
+beforeAll(async () => {
+  mockData = await getMockData();
+  [expectedArticle] = mockData;
+});
 
 let app;
 beforeEach(async () => {
@@ -14,15 +22,15 @@ describe(`Article API endpoint`, () => {
     test(`that Articles API returns the expected result`, async () => {
       const res = await request(app).get(`/api/articles`);
       expect(res.statusCode).toBe(200);
-      expect(res.body.length).toEqual(5);
+      expect(res.body.length).toEqual(mockData.length);
     });
   });
 
   describe(`get /:articleId`, () => {
-    test(`that Articles API by Id returns an existing article`, async () => {
-      const res = await request(app).get(`/api/articles/QQafsx`);
+    test.only(`that Articles API by Id returns an existing article`, async () => {
+      const res = await request(app).get(`/api/articles/${expectedArticle.id}`);
       expect(res.statusCode).toBe(200);
-      expect(res.body.title).toEqual(`Борьба с прокрастинацией`);
+      expect(res.body.title).toEqual(expectedArticle.title);
     });
 
     test(`that Articles API returns 404 when articles was not found`, async () => {
@@ -59,7 +67,7 @@ describe(`Article API endpoint`, () => {
 
   describe(`put /:articleId`, () => {
     test(`that an article can be update`, async () => {
-      const res = await request(app).put(`/api/articles/QQafsx`).send({
+      const res = await request(app).put(`/api/articles/${expectedArticle.id}`).send({
         title: `new title`,
         announce: `announce`,
         fullText: `full text`,
@@ -77,14 +85,14 @@ describe(`Article API endpoint`, () => {
     });
 
     test(`that 400 returns trying to update an article using malformed data`, async () => {
-      const res = await request(app).put(`/api/articles/QQafsx`).send({});
+      const res = await request(app).put(`/api/articles/${expectedArticle.id}`).send({});
       expect(res.statusCode).toBe(400);
     });
   });
 
   describe(`delete /:articleId`, () => {
     test(`that an article can be deleted using Article API`, async () => {
-      const res = await request(app).delete(`/api/articles/QQafsx`).send({});
+      const res = await request(app).delete(`/api/articles/${expectedArticle}`).send({});
       expect(res.statusCode).toBe(204);
     });
 
@@ -96,9 +104,9 @@ describe(`Article API endpoint`, () => {
 
   describe(`get /:articleId/comments`, () => {
     test(`that Article API returns comments for choised article`, async () => {
-      const res = await request(app).get(`/api/articles/sBJBdg/comments`);
+      const res = await request(app).get(`/api/articles/${expectedArticle.id}/comments`);
       expect(res.statusCode).toBe(200);
-      expect(res.body.length).toEqual(5);
+      expect(res.body.length).toEqual(expectedArticle.comments.length);
     });
 
     test(`that Article API returns 404 trying to query an artilce which does not exist`, async () => {
@@ -108,8 +116,8 @@ describe(`Article API endpoint`, () => {
   });
 
   describe(`delete /:articleId/comments/:commentId`, () => {
-    test(`that comments can be deleted`, async () => {
-      const res = await request(app).delete(`/api/articles/sBJBdg/comments/Q4NylP`);
+    test.only(`that comments can be deleted`, async () => {
+      const res = await request(app).delete(`/api/articles/${expectedArticle.id}/comments/${expectedArticle.comments[0].id}`);
       expect(res.statusCode).toBe(204);
     });
 
@@ -119,14 +127,14 @@ describe(`Article API endpoint`, () => {
     });
 
     test(`that 404 returns when the comment does not exist`, async () => {
-      const res = await request(app).delete(`/api/articles/sBJBdg/comments/foo`);
+      const res = await request(app).delete(`/api/articles/${expectedArticle.id}/comments/foo`);
       expect(res.statusCode).toBe(404);
     });
   });
 
   describe(`post /:articleId/comments`, () => {
     test(`a new comment can be created`, async () => {
-      const res = await request(app).post(`/api/articles/vjMZvz/comments`).send({
+      const res = await request(app).post(`/api/articles/${expectedArticle.id}/comments`).send({
         text: `long text`,
       });
 
