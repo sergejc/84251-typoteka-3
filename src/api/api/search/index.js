@@ -1,3 +1,5 @@
-const search = require('./search');
+'use strict';
+
+const search = require(`./search`);
 
 module.exports = search;

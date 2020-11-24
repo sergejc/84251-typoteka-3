@@ -2,7 +2,7 @@
 
 const fs = require(`fs`).promises;
 
-const {ExitCode} = require('../../../../constants');
+const {ExitCode} = require(`../../../../constants`);
 const PATH_TO_DATA_FOLDER = `${__dirname}/../data/`;
 
 function getRandomIntInclusive(min, max) {

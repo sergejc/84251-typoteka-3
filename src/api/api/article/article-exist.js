@@ -1,10 +1,14 @@
-const {HttpCode} = require('../../../constants');
+'use strict';
+
+const {HttpCode} = require(`../../../constants`);
+const {logger} = require(`../../logger`);
 
 module.exports = (service) => (req, res, next) => {
   const {articleId} = req.params;
   const article = service.findById(articleId);
 
   if (!article) {
+    logger.info(`The HTTP response status is ${HttpCode.NOT_FOUND}`);
     return res.status(HttpCode.NOT_FOUND)
       .send(`Article with ${articleId} not found`);
   }

@@ -2,7 +2,7 @@
 
 const {cli} = require(`./cli`);
 
-const { ExitCode } = require(`../constants`);
+const {ExitCode} = require(`../constants`);
 const DEFAULT_COMMAND = `--help`;
 const USER_ARGV_INDEX = 2;
 

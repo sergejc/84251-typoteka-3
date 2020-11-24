@@ -15,3 +15,4 @@ node_modules/
 build/
 
 src/service/cli/generate/mock.json
+src/service/logs

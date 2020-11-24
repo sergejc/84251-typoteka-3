@@ -4,9 +4,12 @@
   "description": "Типотека",
   "main": "src/service/index.js",
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run start-front-server\"",
+    "start::servers": "concurrently \"npm run server\" \"npm run start-front-server\"",
+    "start": "LOG_LEVEL=error npm run start::servers",
+    "start::debug": "LOG_LEVEL=debug npm run server | ./node_modules/.bin/pino-pretty",
     "command": "node src/service/index.js",
-    "test": "npm run eslint",
+    "test": "npm run test::rest",
+    "test::rest": "jest .e2e.test.js",
     "eslint": "eslint --ext .js src/",
     "server": "nodemon src/api/index.js",
     "start-front-server": "nodemon ./src/express/index.js"
@@ -24,13 +27,17 @@
   "devDependencies": {
     "eslint": "6.8.0",
     "eslint-config-htmlacademy": "0.5.2",
-    "nodemon": "2.0.2"
+    "jest": "26.0.1",
+    "nodemon": "2.0.2",
+    "pino-pretty": "4.3.0",
+    "supertest": "4.0.2"
   },
   "dependencies": {
     "chalk": "3.0.0",
     "concurrently": "5.2.0",
     "express": "4.17.1",
     "nanoid": "3.1.10",
+    "pino": "6.7.0",
     "pug": "2.0.4"
   }
 }
