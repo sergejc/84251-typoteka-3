@@ -13,7 +13,7 @@ block content
                 h1 Новая публикация
                 .new-publication__date-form
                   h3 Дата публикации
-                  form(action='#', method='POST')
+                  form(action='#', method='get')
                     .new-publication__date-block
                       label(for='new-publication-date', aria-label='Календарь')
                       input#new-publication-date(type='text', name='login', placeholder='21.03.2019')
@@ -22,11 +22,11 @@ block content
                 | Закрыть
                 | окно
               .new-publication__form.form
-                form(action='#', method='get')
+                form(action='/articles/add', method='POST')
                   .form__wrapper.form__wrapper--intro
                     .form__field
                       label
-                        input(type='text', placeholder='Заголовок', required='')
+                        input(type='text', placeholder='Заголовок', required='' name='title')
                     .form__field.form__field--post-image
                       label
                         input#image-name-field(type='text', placeholder='Фотография', readonly='')
@@ -38,10 +38,11 @@ block content
                   .form__wrapper.form__wrapper--text
                     .form__field.form__field--publication-text
                       label
-                        textarea(rows='1', placeholder='Анонс публикации')
+                        textarea(rows='1', placeholder='Анонс публикации' name='announce')
                     .form__field.form__field--publication-text
                       label
-                        textarea(rows='1', placeholder='Полный текст публикации')
+                        textarea(rows='1', placeholder='Полный текст публикации' name='fullText')
+                  button.new-publication__button.button.button--colored(type='submit') Опубликовать      
           .modal__overlay
 
 
