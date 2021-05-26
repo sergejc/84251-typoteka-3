@@ -9,7 +9,7 @@ const bodyParser = require(`body-parser`);
 const DEFAULT_PORT = 8080;
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(`markup`));
 app.set(`views`, path.join(__dirname, `templates`));
 app.set(`view engine`, `pug`);

@@ -11,7 +11,7 @@ let articles;
 beforeAll(async () => {
   const mockData = await getMockData();
   const expectedArticle = mockData[0];
-  searchTerm = expectedArticle.title.split(' ').pop();
+  searchTerm = expectedArticle.title.split(` `).pop();
   articles = (new Search(mockData)).find(searchTerm);
 });
 
