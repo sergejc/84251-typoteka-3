@@ -17,7 +17,7 @@ router.get(`/register`, (req, res) => res.render(`pages/sign-up`));
 router.get(`/login`, (req, res) => res.render(`pages/login`));
 
 router.get(`/search`, async (req, res) => {
-  const search = req.query.search;
+  const {search} = req.query;
   if (!search) {
     return res.render(`pages/search`, {});
   }
