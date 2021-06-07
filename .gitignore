@@ -16,3 +16,6 @@ build/
 
 src/service/cli/generate/mock.json
 src/service/logs
+
+# Файл с переменными окружения
+.env
