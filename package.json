@@ -11,7 +11,7 @@
     "test": "npm run test::rest",
     "test::rest": "jest .e2e.test.js",
     "eslint": "eslint --ext .js src/",
-    "server": "nodemon src/api/index.js",
+    "server": "nodemon -r dotenv/config src/api/index.js",
     "start-front-server": "nodemon ./src/express/index.js"
   },
   "repository": {
@@ -33,12 +33,15 @@
     "supertest": "4.0.2"
   },
   "dependencies": {
+    "axios": "0.21.0",
     "chalk": "3.0.0",
     "concurrently": "5.2.0",
+    "dotenv": "10.0.0",
     "express": "4.17.1",
     "nanoid": "3.1.10",
+    "pg": "8.6.0",
     "pino": "6.7.0",
     "pug": "2.0.4",
-    "axios": "0.21.0"
+    "sequelize": "6.6.2"
   }
 }
