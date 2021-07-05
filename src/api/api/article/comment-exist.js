@@ -3,9 +3,9 @@
 const {HttpCode} = require(`../../../constants`);
 const {logger} = require(`../../logger`);
 
-module.exports = (service) => (req, res, next) => {
-  const {articleId, commentId} = req.params;
-  const comment = service.getCommentById(articleId, commentId);
+module.exports = (service) => async (req, res, next) => {
+  const {commentId} = req.params;
+  const comment = await service.getCommentById(commentId);
 
   if (!comment) {
     logger.info(`The HTTP response status is ${HttpCode.NOT_FOUND}`);

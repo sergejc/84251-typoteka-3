@@ -11,8 +11,8 @@ const port = Number.parseInt(process.argv[2], 10) || DEFAULT_PORT;
 (async () => {
   try {
     await connectDb();
-    const server = await app();
-    server.listen(port, () => {
+   
+    app.listen(port, () => {
       logger.info(`Server start on port: ${port}`);
     });
   } catch (err) {

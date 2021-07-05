@@ -1,75 +1,55 @@
+/* eslint-disable camelcase */
 'use strict';
 
-const {nanoid} = require(`nanoid`);
-
-const MAX_ID_LENGTH = 6;
+const Aliase = require(`../models/aliase`);
 
 class Article {
-  constructor(articles) {
-    this._articles = articles.reduce((acc, curr) =>{
-      acc[curr.id] = curr;
-      return acc;
-    }, {});
+  constructor({models}) {
+    this._article = models.article;
+    this._comment = models.comment;
   }
 
   findAll() {
-    return Object.values(this._articles);
+    return this._article.findAll({include: Aliase.COMMENTS});
   }
 
   findById(id) {
-    return this._articles[id];
+    return this._article.findByPk(id, {include: Aliase.COMMENTS});
   }
 
   create(article) {
-    const id = nanoid(MAX_ID_LENGTH);
-    this._articles[id] = {
-      category: [],
-      comments: [],
+    return this._article.create({
       ...article,
-      id,
-    };
-
-    return this._articles[id];
+    });
   }
 
   update(newArticle, id) {
-    this._articles[id] = {
-      ...this._articles[id],
-      ...newArticle,
-    };
-
-    return this._articles[id];
+    return this._article.update(newArticle, {where: {id}});
   }
 
   delete(id) {
-    delete this._articles[id];
+    const res = this._article.destroy({
+      where: {
+        id
+      }
+    });
+    return !!res;
   }
 
-  getComments(articleId) {
-    return this._articles[articleId].comments;
+  async getComments(articleId) {
+    return (await this.findById(articleId)).comments;
   }
 
-  getCommentById(articleId, commentId) {
-    return this.getComments(articleId).find((comment) => comment.id === commentId);
+  getCommentById(id) {
+    return this._comment.findByPk(id);
   }
 
-  deleteComment(articleId, commendId) {
-    const article = this._articles[articleId];
-    const comments = article.comments.filter((comment) => comment.id !== commendId);
-    this._articles[articleId] = {
-      ...this._articles[articleId],
-      comments,
-    };
+  deleteComment(id) {
+    return this._comment.destroy({where: {id}});
   }
 
-  createComment(articleId, commentData) {
-    const newComment = {
-      id: nanoid(MAX_ID_LENGTH),
-      ...commentData
-    };
-    this._articles[articleId].comments.push(newComment);
-
-    return newComment;
+  createComment(articleId, commentData, userId) {
+    return this._comment.create({...commentData, user_id: userId, article_id: articleId});
   }
 }
 

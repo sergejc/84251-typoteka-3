@@ -13,8 +13,8 @@ const router = new Router();
 module.exports = (app, service) => {
   app.use(`/articles`, router);
 
-  router.get(`/`, (req, res) => {
-    const articles = service.findAll();
+  router.get(`/`, async (req, res) => {
+    const articles = await service.findAll();
 
     logger.info(`The HTTP response status is ${HttpCode.OK}`);
     res.status(HttpCode.OK)
@@ -27,17 +27,17 @@ module.exports = (app, service) => {
       .json(res.locals.article);
   });
 
-  router.post(`/`, articleValidate, (req, res) => {
-    const article = service.create(req.body);
+  router.post(`/`, articleValidate, async (req, res) => {
+    const article = await service.create(req.body);
 
     logger.info(`The HTTP response status is ${HttpCode.CREATED}`);
     return res.status(HttpCode.CREATED)
       .json(article);
   });
 
-  router.put(`/:articleId`, [articleExist(service), articleUpdateValidate], (req, res) => {
+  router.put(`/:articleId`, [articleExist(service), articleUpdateValidate], async (req, res) => {
     const {articleId} = req.params;
-    const article = service.update(
+    const article = await service.update(
         req.body,
         articleId,
     );
@@ -55,25 +55,26 @@ module.exports = (app, service) => {
     return res.status(HttpCode.NO_CONTENT).send();
   });
 
-  router.get(`/:articleId/comments`, articleExist(service), (req, res) => {
+  router.get(`/:articleId/comments`, articleExist(service), async (req, res) => {
     const {articleId} = req.params;
-    const comments = service.getComments(articleId);
+    const comments = await service.getComments(articleId);
 
     logger.info(`The HTTP response status is ${HttpCode.OK}`);
     return res.status(HttpCode.OK).json(comments);
   });
 
-  router.delete(`/:articleId/comments/:commentId`, [articleExist(service), commentExist(service)], (req, res) => {
-    const {articleId, commentId} = req.params;
-    service.deleteComment(articleId, commentId);
+  router.delete(`/:articleId/comments/:commentId`, [articleExist(service), commentExist(service)], async (req, res) => {
+    const {commentId} = req.params;
+    await service.deleteComment(commentId);
 
     logger.info(`The HTTP response status is ${HttpCode.NO_CONTENT}`);
     return res.status(HttpCode.NO_CONTENT).send();
   });
 
-  router.post(`/:articleId/comments`, articleExist(service), (req, res) => {
+  router.post(`/:articleId/comments`, articleExist(service), async (req, res) => {
     const {articleId} = req.params;
-    const comment = service.createComment(articleId, req.body);
+    const {user_id: userId} = res.locals.article;
+    const comment = await service.createComment(articleId, req.body, userId);
 
     logger.info(`The HTTP response status is ${HttpCode.CREATED}`);
     return res.status(HttpCode.CREATED)

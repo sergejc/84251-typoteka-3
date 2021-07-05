@@ -3,12 +3,11 @@
 const {HttpCode} = require(`../../../constants`);
 const {logger} = require(`../../logger`);
 
-const articleKeys = [`title`, `announce`, `fullText`, `category`, `createdDate`, `comments`];
+const articleKeys = [`title`, `ads`, `full_text`];
 
 // eslint-disable-next-line consistent-return
 module.exports = (req, res, next) => {
-  const newOffer = req.body;
-  const keys = Object.keys(newOffer);
+  const keys = Object.keys(req.body);
   const keysExists = articleKeys.every((key) => keys.includes(key));
 
   if (!keysExists) {

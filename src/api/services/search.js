@@ -1,12 +1,21 @@
 'use strict';
 
+const Sequelize = require(`sequelize`);
+const Op = Sequelize.Op;
+
 class Search {
-  constructor(offers) {
-    this._offers = offers;
+  constructor({models}) {
+    this._article = models.article;
   }
 
   find(term) {
-    return this._offers.filter((article) => article.title.includes(term));
+    return this._article.findAll({
+      where: {
+        title: {
+          [Op.like]: `%${term}%`
+        }
+      }
+    });
   }
 }
 

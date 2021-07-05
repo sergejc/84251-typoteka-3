@@ -9,8 +9,8 @@ const router = new Router();
 module.exports = (app, service) => {
   app.use(`/categories`, router);
 
-  router.get(`/`, (req, res) => {
-    const categories = service.findAll();
+  router.get(`/`, async (req, res) => {
+    const categories = await service.findAll();
     logger.info(`The HTTP response status is ${HttpCode.OK}`);
     res.status(HttpCode.OK)
       .json(categories);

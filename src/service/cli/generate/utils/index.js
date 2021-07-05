@@ -20,7 +20,22 @@ async function readFileByName(fileName) {
   return data.trim().split(`\n`);
 }
 
+const getRandomSubarray = (items) => {
+  items = items.slice();
+  let count = getRandomIntInclusive(1, items.length - 1);
+  const result = [];
+  while (count--) {
+    result.push(
+        ...items.splice(
+            getRandomInt(0, items.length - 1), 1
+        )
+    );
+  }
+  return result;
+};
+
 module.exports = {
   getRandomIntInclusive,
   readFileByName,
+  getRandomSubarray,
 };
