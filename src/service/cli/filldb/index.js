@@ -12,7 +12,7 @@ const MAX_COUNT = 1000;
 module.exports = {
   name: `--filldb`,
   run([arg]) {
-    let count = Number.parseInt(arg, 10) || DEFAULT_COUNT;
+    const count = Number.parseInt(arg, 10) || DEFAULT_COUNT;
 
     if (count > MAX_COUNT) {
       logger.info(`No more than 1000 articles`);

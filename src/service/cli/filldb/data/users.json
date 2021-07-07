@@ -1,0 +1,23 @@
+[
+  [
+    "tony.stark@avengers.com",
+    "$2y$10$d8RkJMCh1t0xSGi6B4082ONhgaHouI4mIO2rk/impRcxb0/cjQk0u",
+    "Tony",
+    "Stark",
+    "avatar1.jpg"
+  ],
+  [
+    "steve.rogers@avengers.com",
+    "$2y$10$RzmYHNRBCCJunRE2E3RC0uui9ROLZ0BhFNpaxYkSQyEPJBUiGzxMq",
+    "Steve",
+    "Rogers",
+    "avatar2.jpg"
+  ],
+  [
+    "natasha.romanoff@avengers.com",
+    "$2y$10$1UFBmcSgMZ1RwH/vrzL6U.derQ94XejY292bxQCdh.Go49aQtiSaG",
+    "Natasha",
+    "Romanoff",
+    "avatar3.jpg"
+  ]
+]
