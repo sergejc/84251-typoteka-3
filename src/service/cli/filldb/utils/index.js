@@ -2,6 +2,10 @@ function getRandomIntInclusive(min, max) {
   return Math.ceil(Math.random() * (max - min)) + min;
 }
 
+function getRandomIntExclusive(min, max) {
+  return Math.floor(Math.random() * max);
+}
+
 function getRandomSubArray(maxNum, type) {
   const descNum = getRandomIntInclusive(1, maxNum);
   const descObj = new Set();
@@ -15,5 +19,6 @@ function getRandomSubArray(maxNum, type) {
 
 module.exports = {
   getRandomSubArray,
-  getRandomIntInclusive
+  getRandomIntInclusive,
+  getRandomIntExclusive,
 }

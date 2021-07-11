@@ -7,12 +7,14 @@ const users = require(`./data/users.json`);
 const titles = require(`./data/titles.json`);
 const text = require(`./data/text.json`);
 const categories = require(`./data/categories.json`);
-const {getRandomSubArray, getRandomIntInclusive} = require(`./utils`)
+const comments = require(`./data/comments.json`);
+const {getRandomSubArray, getRandomIntInclusive, getRandomIntExclusive} = require(`./utils`)
 
 const MAX_ANNOUNCE_NUM = 5;
+const MAX_COMMENTS = 5;
 
 async function seedDB(count) {
-  const {User, Article, Category} = defineModels(sequelize);
+  const {User, Article, Category, Comment} = defineModels(sequelize);
   await sequelize.sync({force: true});
 
   const categoryModels = await Category.bulkCreate(
@@ -27,16 +29,23 @@ async function seedDB(count) {
   const maxFullText = getRandomIntInclusive(1, text.length);
   const articles = Array(count).fill().map(async () => {
     const article = {
-      "title": titles[getRandomIntInclusive(0, titles.length - 1)],
+      "title": titles[getRandomIntExclusive(0, titles.length)],
       "full_text": getRandomSubArray(maxFullText, text).join(` `).substring(0, 1000),
       "category": getRandomSubArray(categories.length, categories),
       "picture": "picture.jpg",
       "ads": getRandomSubArray(MAX_ANNOUNCE_NUM, text).join(` `).substring(0, 250),
-      "user_id": userModels[getRandomIntInclusive(1, users.length)],
+      "user_id": userModels[getRandomIntExclusive(0, users.length)].id,
     };
     
-    const articleModel = await Article.create(article, {include: [Aliase.COMMENTS]});
-    await articleModel.addCategories(categoryModels);
+    const articleModel = await Article.create(article);
+    const commentModels = await Promise.all(getRandomSubArray(MAX_COMMENTS, comments).map(async (commentText) => {
+      const commentModel = await Comment.create({full_text: commentText});
+      await commentModel.setUser(userModels[getRandomIntExclusive(0, users.length)]);
+      return commentModel;
+    }));
+
+    await articleModel.addComments(commentModels);
+    await articleModel.addCategories(getRandomSubArray(categoryModels.length, categoryModels));
     return articleModel;
   });
   await Promise.all(articles);
