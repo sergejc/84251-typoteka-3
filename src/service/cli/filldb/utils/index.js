@@ -3,18 +3,13 @@ function getRandomIntInclusive(min, max) {
 }
 
 function getRandomIntExclusive(min, max) {
-  return Math.floor(Math.random() * max);
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function getRandomSubArray(maxNum, type) {
-  const descNum = getRandomIntInclusive(1, maxNum);
-  const descObj = new Set();
-  Array(descNum).fill().forEach(() => {
-    const key = getRandomIntInclusive(0, type.length - 1);
-    descObj.add(type[key]);
-  });
-
-  return Array.from(descObj);
+function getRandomSubArray(maxLength, sourceArray) {
+  return sourceArray
+    .sort(() => 0.5 - Math.random())
+    .slice(0, getRandomIntExclusive(1, maxLength));
 }
 
 module.exports = {
