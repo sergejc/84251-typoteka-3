@@ -1,7 +1,7 @@
 'use strict';
 
 const {HttpCode} = require(`../../../constants`);
-const {logger} = require(`../../logger`);
+const {logger} = require(`../../../service/logger`);
 
 const articleKeys = [`title`, `announce`, `fullText`, `category`, `createdDate`, `comments`];
 

@@ -1,9 +1,8 @@
 'use strict';
 
-const chalk = require(`chalk`);
 const sequelize = require(`../../../api/lib/sequelize`);
 const {ExitCode} = require(`../../../constants`);
-const {logger} = require(`../../../api/logger`);
+const {logger} = require(`../../../service/logger`);
 const {seedDB} = require(`./seedDB`);
 
 const DEFAULT_COUNT = 1;

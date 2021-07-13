@@ -14,7 +14,6 @@ node_modules/
 # Папка с собранными файлами проекта
 build/
 
-src/service/cli/generate/mock.json
 src/service/logs
 
 # Файл с переменными окружения

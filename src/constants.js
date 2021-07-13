@@ -1,5 +1,7 @@
 'use strict';
 
+const path = require(`path`);
+
 module.exports = {
   ExitCode: {
     SUCCESS: 0,
@@ -12,5 +14,6 @@ module.exports = {
     BAD_REQUEST: 400,
     NOT_FOUND: 404,
     NO_CONTENT: 204,
-  }
+  },
+  PROJECT_SRC: path.resolve(__dirname),
 };

@@ -3,9 +3,9 @@
 const pino = require(`pino`);
 
 const logger = pino({
-  name: `pino-and-express`,
+  name: `app-logger`,
   level: process.env.LOG_LEVEL || `info`
-}, pino.destination(`./src/service/logs/output.log`));
+}, pino.destination(__dirname + `/output.log`));
 
 module.exports = {
   logger,

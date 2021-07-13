@@ -2,7 +2,7 @@
 
 const express = require(`express`);
 const {HttpCode} = require(`../constants`);
-const {logger} = require(`./logger`);
+const {logger} = require(`../service/logger`);
 const routes = require(`./api`);
 
 const app = express();

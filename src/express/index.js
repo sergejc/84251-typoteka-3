@@ -3,7 +3,7 @@
 const express = require(`express`);
 const routes = require(`./routes`);
 const path = require(`path`);
-const {logger} = require(`../api/logger`);
+const {logger} = require(`../service/logger`);
 const bodyParser = require(`body-parser`);
 
 const DEFAULT_PORT = 8080;

@@ -7,12 +7,13 @@
     "start::servers": "concurrently \"npm run server\" \"npm run start-front-server\"",
     "start": "LOG_LEVEL=error npm run start::servers",
     "start::debug": "LOG_LEVEL=debug npm run server | ./node_modules/.bin/pino-pretty",
-    "command": "node src/service/index.js",
+    "command": "node -r dotenv/config src/service/index.js",
     "test": "npm run test::rest",
     "test::rest": "jest .e2e.test.js",
     "eslint": "eslint --ext .js src/",
     "server": "nodemon -r dotenv/config src/api/index.js",
-    "start-front-server": "nodemon ./src/express/index.js"
+    "start-front-server": "nodemon ./src/express/index.js",
+    "log": "tail -f ./src/service/logger/output.log"
   },
   "repository": {
     "type": "git",

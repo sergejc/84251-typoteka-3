@@ -1,5 +1,4 @@
 'use strict';
-
 const {cli} = require(`./cli`);
 
 const {ExitCode} = require(`../constants`);

@@ -6,7 +6,7 @@ const articleValidate = require(`./article-validate`);
 const articleExist = require(`./article-exist.js`);
 const articleUpdateValidate = require(`./article-update-validate`);
 const commentExist = require(`./comment-exist`);
-const {logger} = require(`../../logger`);
+const {logger} = require(`../../../service/logger`);
 
 const router = new Router();
 

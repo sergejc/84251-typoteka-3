@@ -1,7 +1,7 @@
 'use strict';
 
 const {HttpCode} = require(`../../../constants`);
-const {logger} = require(`../../logger`);
+const {logger} = require(`../../../service/logger`);
 
 module.exports = (service) => async (req, res, next) => {
   const {articleId} = req.params;

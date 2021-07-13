@@ -1,7 +1,7 @@
 'use strict';
 
 const sequelize = require(`../lib/sequelize`);
-const {logger} = require(`../logger`);
+const {logger} = require(`../../service/logger`);
 
 async function connectDb() {
   try {
