@@ -1,7 +1,6 @@
 'use strict';
 /* eslint-disable camelcase */
 
-const sequelize = require(`../../../api/lib/sequelize`);
 const defineModels = require(`../../../api/models`);
 const users = require(`./data/users.json`);
 const titles = require(`./data/titles.json`);
@@ -15,7 +14,7 @@ const MAX_COMMENTS = 5;
 const MAX_ARTICLE_TEXT_LENGTH = 1000;
 const MAX_ADS_TEXT_LENGTH = 250;
 
-async function seedDB(count) {
+async function seedDB(count, sequelize) {
   const {User, Article, Category, Comment} = defineModels(sequelize);
   await sequelize.sync({force: true});
 

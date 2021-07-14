@@ -5,7 +5,7 @@ const {Article, Category, Search} = require(`../services`);
 const article = require(`./article`);
 const category = require(`./category`);
 const search = require(`./search`);
-const sequelize = require(`../lib/sequelize`);
+const sequelize = require(`../lib/db/sequelize`);
 const defineModels = require(`../models`);
 
 const router = new Router();

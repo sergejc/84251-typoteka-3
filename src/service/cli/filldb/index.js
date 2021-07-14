@@ -1,9 +1,9 @@
 'use strict';
 
-const sequelize = require(`../../../api/lib/sequelize`);
 const {ExitCode} = require(`../../../constants`);
 const {logger} = require(`../../../service/logger`);
 const {seedDB} = require(`./seedDB`);
+const {sequelize} = require(`../../../api/lib/db`);
 
 const DEFAULT_COUNT = 1;
 const MAX_COUNT = 1000;
@@ -22,7 +22,7 @@ module.exports = {
       try {
         logger.info(`Trying to connect to database...`);
         await sequelize.authenticate();
-        await seedDB(count);
+        await seedDB(count, sequelize);
         process.exit(ExitCode.SUCCESS);
       } catch (err) {
         logger.error(`An error occured: ${err.message}`);
