@@ -19,7 +19,8 @@ async function seedDB(count) {
   const {User, Article, Category, Comment} = defineModels(sequelize);
   await sequelize.sync({force: true});
 
-  const categoryModels = await Category.bulkCreate(categories.map((item) => ({category: item})));
+  const categoryModels = await Category.bulkCreate(categories.map(
+      (item) => ({category: item})));
 
   const userModels = await Promise.all(users.map((user) => {
     const [email, password_hash, first_name, last_name, avatar] = user;
