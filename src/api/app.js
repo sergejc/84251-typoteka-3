@@ -3,9 +3,10 @@
 const express = require(`express`);
 const {HttpCode} = require(`../constants`);
 const {logger} = require(`../service/logger`);
-const routes = require(`./api`);
+const {getRouter} = require(`./api`);
 
 const app = express();
+const routes = getRouter();
 
 app.use(express.json());
 app.use((req, res, next) => {

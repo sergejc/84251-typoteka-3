@@ -1,9 +1,12 @@
 'use strict';
 
+const {connectDb, sequelize} = require(`./lib/db`);
+const {setSequelize} = require(`./api/index`);
+setSequelize(sequelize);
+
 const app = require(`./app`);
 const {logger} = require(`../service/logger`);
 const constants = require(`../constants`);
-const {connectDb, sequelize} = require(`./lib/db`);
 
 const DEFAULT_PORT = 3000;
 const port = Number.parseInt(process.argv[2], 10) || DEFAULT_PORT;

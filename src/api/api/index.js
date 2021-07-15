@@ -5,15 +5,25 @@ const {Article, Category, Search} = require(`../services`);
 const article = require(`./article`);
 const category = require(`./category`);
 const search = require(`./search`);
-const sequelize = require(`../lib/db/sequelize`);
 const defineModels = require(`../models`);
 
 const router = new Router();
+let sequelize;
 
-defineModels(sequelize);
+function getRouter() {
+  defineModels(sequelize);
 
-article(router, new Article(sequelize));
-category(router, new Category(sequelize));
-search(router, new Search(sequelize));
+  article(router, new Article(sequelize));
+  category(router, new Category(sequelize));
+  search(router, new Search(sequelize));
+  return router;
+}
 
-module.exports = router;
+function setSequelize(dbConnection) {
+  sequelize = dbConnection;
+}
+
+module.exports = {
+  getRouter,
+  setSequelize,
+};
